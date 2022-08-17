@@ -1,0 +1,288 @@
+<!-- https://mgt.guc.edu.eg/OnlineTutorials/JSP%20-%20Servlets/Full%20Login%20Example.aspx -->
+
+<!-- 01. LoginPage -->
+<%@ page language="java" 
+    contentType="text/html; charset=windows-1256"
+    pageEncoding="windows-1256"
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
+		<title>Login Page</title>
+	</head>
+
+	<body>
+		<form action="LoginServlet">
+
+			Please enter your username 		
+			<input type="text" name="un"/><br>		
+		
+			Please enter your password
+			<input type="text" name="pw"/>
+			
+			<input type="submit" value="submit">			
+		
+		</form>
+	</body>
+</html>
+
+
+<!-- 02. LoginServlet -->
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+public class LoginServlet extends HttpServlet {
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+						   throws ServletException, java.io.IOException {
+		try {	    
+			UserBean user = new UserBean();
+			user.setUserName(request.getParameter("un"));
+			user.setPassword(request.getParameter("pw"));
+
+			user = UserDAO.login(user);
+						
+			if (user.isValid())
+			{
+				HttpSession session = request.getSession(true);	    
+				session.setAttribute("currentSessionUser",user); 
+				response.sendRedirect("userLogged.jsp"); //logged-in page      		
+			} else 
+				response.sendRedirect("invalidLogin.jsp"); //error page 
+		} 
+		
+		catch (Throwable theException) 	    
+		{
+			System.out.println(theException); 
+		}
+    }
+}
+
+<!-- 03. Create the "UserBean" class -->
+public class UserBean {
+	
+    private String username;
+    private String password;
+    private String firstName;
+	private String lastName;
+	public boolean valid;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String newFirstName) {
+		firstName = newFirstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String newLastName) {
+		lastName = newLastName;
+	}
+			
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String newPassword) {
+		password = newPassword;
+	}
+		
+	public String getUsername() {
+		return username;
+	}
+	public void setUserName(String newUsername) {
+		username = newUsername;
+	}
+
+				
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean newValid) {
+		valid = newValid;
+	}	
+}
+
+
+<!-- 04. Create the "UserDAO" class -->
+import java.text.*;
+import java.util.*;
+import java.sql.*;
+
+public class UserDAO {
+
+	static Connection currentCon = null;
+	static ResultSet rs = null;  
+	
+	public static UserBean login(UserBean bean) {
+	
+		//preparing some objects for connection 
+		Statement stmt = null;    
+	
+		String username = bean.getUsername();    
+		String password = bean.getPassword();   
+	    
+		String searchQuery = "select * from users where username='" + username + "' 
+										AND password='" + password + "'";
+	    
+		// "System.out.println" prints in the console; Normally used to trace the process
+		System.out.println("Your user name is " + username);          
+		System.out.println("Your password is " + password);
+		System.out.println("Query: " +searchQuery);
+	    
+		try {
+			//connect to DB 
+			currentCon = ConnectionManager.getConnection();
+			stmt=currentCon.createStatement();
+			rs = stmt.executeQuery(searchQuery);	        
+			boolean more = rs.next();
+	       
+			// if user does not exist set the isValid variable to false
+			if (!more) 
+			{
+				System.out.println("Sorry, you are not a registered user! Please sign up first");
+				bean.setValid(false);
+			} 
+	        
+			//if user exists set the isValid variable to true
+			else if (more) 
+			{
+				String firstName = rs.getString("FirstName");
+				String lastName = rs.getString("LastName");
+	     	
+				System.out.println("Welcome " + firstName);
+				bean.setFirstName(firstName);
+				bean.setLastName(lastName);
+				bean.setValid(true);
+			}
+		} 
+
+		catch (Exception ex) 
+		{
+			System.out.println("Log In failed: An Exception has occurred! " + ex);
+		} 
+	    
+		//some exception handling
+		finally 
+		{
+			if (rs != null)	{
+				try {
+					rs.close();
+				} catch (Exception e) {}
+               rs = null;
+            }
+	
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e) {}
+               stmt = null;
+            }
+	
+			if (currentCon != null) {
+				try {
+					currentCon.close();
+				} catch (Exception e) {}
+				currentCon = null;
+			}
+		}
+		return bean;
+    }	
+}
+
+
+<!-- 05. Create the "ConnectionManager" class -->
+import java.sql.*;
+import java.util.*;
+
+public class ConnectionManager
+{
+	static Connection con;
+	static String url;
+            
+	public static Connection getConnection()
+	{
+		try
+		{
+			String url = "jdbc:odbc:" + "DataSource"; 
+            // assuming "DataSource" is your DataSource name
+
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            
+            try
+            {            	
+				con = DriverManager.getConnection(url,"username","password"); 
+                								
+				// assuming your SQL Server's username is "username" and password is "password"  
+            }
+            
+            catch (SQLException ex)
+            {
+               ex.printStackTrace();
+            }
+        }
+
+		catch(ClassNotFoundException e)
+		{
+			System.out.println(e);
+		}
+		return con;
+	}
+}
+
+
+<!-- 06. Steps to create the "userLogged" JSP -->
+<%@ page language="java" 
+	contentType="text/html; charset=windows-1256"
+	pageEncoding="windows-1256"
+	import="ExamplePackage.UserBean"
+%>
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
+		<title>   User Logged Successfully   </title>
+	</head>
+	
+	<body>
+		<center>
+            <% UserBean currentUser = (UserBean (session.getAttribute("currentSessionUser"));%>
+            Welcome <%= currentUser.getFirstName() + " " + currentUser.getLastName() %>
+		</center>
+    </body>
+</html>
+
+
+<!-- 07. Steps to create the "invalidLogin" JSP -->
+<%@ page language="java" 
+	contentType="text/html; charset=windows-1256"
+	pageEncoding="windows-1256"
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
+		<title>Invalid Login</title>
+	</head>
+	
+	<body>
+		<center>
+			Sorry, you are not a registered user! Please sign up first
+		</center>
+	</body>
+</html>

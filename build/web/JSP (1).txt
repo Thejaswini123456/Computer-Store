@@ -1,0 +1,240 @@
+-- XML comment tags <!-- â€¦.. -->
+
+<Connector port="80" protocol="HTTP/1.1" 
+ connectionTimeout="20000" redirectPort="8443" />
+ 
+<!-- 01. helloworld.html -->
+<center> 
+    <font color="green" size="10"> Hello World! </font> 
+</center>
+
+<!-- 02. helloworld.html -->
+<%@ page language="java" contentType="text/html;
+	charset=ISO-8859-1" pageEncoding="ISO-8859-1"
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<center> 
+			<font color="green" size="10">
+				Hello World!
+			</font>
+			<br><br>
+			<font color="gray" size="5"> 
+				The date now is: <%= new java.util.Date() %>
+			</font>
+		</center>
+	</body>
+</html>
+
+
+<!-- 03. web.xml -->
+"web.xml": WebContent / Web-INF
+<welcome-file> myFirstJSP.jsp</welcome-file>
+<welcome-file-list> and </welcome-file-list>
+
+
+<!-- 04. web.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+	xmlns:xsi	="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns		="http://java.sun.com/xml/ns/javaee" 
+    xmlns:web	="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+    xsi:schemaLocation	="http://java.sun.com/xml/ns/javaee 
+        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		
+    id="WebApp_ID" version="2.5">
+	<display-name>
+		JSPExample
+	</display-name>
+	<welcome-file-list>
+		<welcome-file>
+			myFirstJSP.jsp
+		</welcome-file>
+	</welcome-file-list>
+</web-app>
+
+
+<!-- 05. JSP tags -->
+-- Expression tags 	<%= expression %>
+	<%= "Hello" + " " + "World" %>
+
+-- Scriptlet tags 		<% scriptlet %>
+	<%  
+	   Date x = new java.util.Date();
+	   if (x.getHours() > 3 && x.getHours() < 12 ) {   
+	%>
+
+-- Directive tags 		<%@ directive attribute="value" %>
+	<%@page import="java.util.Date" %>
+	The date now is: 
+	<%
+		Date x = new java.util.Date(); 
+		out.println (x);
+	%>
+
+-- Declarative tags 	<%! declarations %>
+	<%! 
+	public static String getMyStatment () {
+			return ("This statement is a return of a method");
+	}
+	%>
+	
+	
+<!-- 06. home.jsp -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title> My first JSP   </title>
+	</head>	
+	<body>		
+		<form action="HelloServlet">			
+			 Please enter a color <br>
+			<input type="text" name="color"size="20px">
+			<input type="submit" value="submit">						
+		</form>		
+	</body>	
+</html>
+
+
+<!-- 07. Create the Servlet -->
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+
+public class HelloWorld extends HttpServlet { 
+  protected void doGet(HttpServletRequest request, 
+      HttpServletResponse response) throws ServletException, IOException 
+	{
+    // reading the user input
+    String color= request.getParameter("color");    
+    PrintWriter out = response.getWriter();
+    out.println (
+		"<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" 
+          \"http://www.w3.org/TR/html4/loose.dtd\">\n" +
+		"<html> \n" +
+			"<head> \n" +
+				"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\"> \n" +
+				"<title> My first jsp  </title> \n" +
+			"</head> \n" +
+			"<body> \n" +
+				"<font size=\"12px\" color=\"" + color + "\">" + "Hello World" + "</font> \n" +
+			"</body> \n" +
+		"</html>" 
+		);  
+	}  
+}
+
+
+<!-- 08. Define your servlet in "web.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="WebApp_ID" version="2.4" 
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<servlet>
+		<servlet-name>Hello</servlet-name>
+		<servlet-class>HelloWorld</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Hello</servlet-name>
+		<url-pattern>/HelloServlet</url-pattern>
+	</servlet-mapping>
+</web-app>
+
+
+<!-- 09. Set your project's welcome file -->
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" 
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+      http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  
+	<servlet>
+		<servlet-name>Hello</servlet-name>
+		<servlet-class>HelloWorld</servlet-class>
+	</servlet>
+  
+	<servlet-mapping>
+		<servlet-name>Hello</servlet-name>
+		<url-pattern>/HelloServlet</url-pattern>
+	</servlet-mapping>
+  
+	<welcome-file-list>
+		<welcome-file>Home.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
+
+
+
+<!-- 10. Server Locating the Servlet -->
+<servlet>
+	<servlet-name>Hello</servlet-name>
+	<servlet-class>HelloWorld</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>Hello</servlet-name>
+	<url-pattern>/HelloServlet</url-pattern>
+</servlet-mapping>
+
+or
+<servlet>
+	<servlet-name> HelloWorld </servlet-name>
+	<servlet-class>HelloWorld</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name> HelloWorld </servlet-name>
+	<url-pattern>/HelloWorld </url-pattern>
+</servlet-mapping>
+
+
+<!-- 11. The Servlet -->
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+public class HelloWorld extends HttpServlet {
+	protected void doGet(HttpServletRequest request,
+		 HttpServletResponse response) throws ServletException, IOException 
+	{
+	
+		// reading the user input
+		String color= request.getParameter("color");
+		PrintWriter out = response.getWriter();
+		out.println (   
+			"<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" 
+			\"http://www.w3.org/TR/html4/loose.dtd\">\n" +
+			"<html> \n" +
+
+			   "<head> \n" +
+				  "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\"> \n" +
+				  "<title> My first jsp  </title> \n" +
+			   "</head> \n" +
+
+			   "<body> \n" +
+				  "<font size=\"12px\" color=\"" + color + "\">" + "Hello World" + "</font> \n" +
+			   "</body> \n" +
+
+			"</html>" 
+		);		
+	}
+}
