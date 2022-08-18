@@ -3,22 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/src/java/computer/Computer.java</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/src/java/computer/UserDAO.java</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/web/index.jsp</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/src/java/computer/ComputerServlet.java</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/web/invalidLogin.jsp</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/web/Cart.jsp</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/web/Checkout.jsp</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/web/userLogged.jsp</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/src/conf/MANIFEST.MF</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/src/java/computer/LoginServlet.java</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/src/java/computer/UserBean.java</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/web/error.html</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/src/java/computer/ConnectionManager.java</file>
-            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(3)/ComputerStore_1_1/web/Login.jsp</file>
+            <file>file:/C:/Users/theja/Downloads/D3%20-%20Lab%201%20Solution%20(Complete)%20(2)/BookStore_1_1/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>

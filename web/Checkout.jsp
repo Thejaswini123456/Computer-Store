@@ -27,11 +27,6 @@
   ArrayList list = (ArrayList) session.getAttribute("shoppingcart");
   String amount = (String) request.getAttribute("amount");
   for (int i=0; i < list.size();i++) {
-   Computer order = (Computer) list.get(i);
- %>
- <tr>
- <td><b><%= order.getName() %></b></td>
- <td><b><%= order.getManufacturer() %></b></td>
  <td><b><%= order.getPrice() %></b></td>
  <td><b><%= order.getQuantity() %></b></td>
  </tr>
@@ -52,3 +47,8 @@
  </center>
 </body>
 </html>
+   Computer order = (Computer) list.get(i);
+ %>
+ <tr>
+ <td><b><%= order.getName() %></b></td>
+ <td><b><%= order.getManufacturer() %></b></td>
