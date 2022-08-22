@@ -16,10 +16,10 @@
  <form name="shoppingForm"  action="ComputerServlet"  method="POST">
  <b>Products Available:</b> 
  <select name=computer>
-  <option> Laptop ThinkPad 2022 | Lenovo | 655.50 </option>
-  <option> CPU 2021 | Dell | 100.15 </option>
-  <option> Mouse | HP | 16.95 </option>
-  <option> Keyboard | Mac | 116.95 </option>
+  <option> Laptop ThinkPad 2022 | Lenovo | 1655 </option>
+  <option> CPU 2021 | Dell | 600.15 </option>
+  <option> Mouse 2022 | HP | 460.95 </option>
+  <option> Keyboard 2020 | Mac | 700.50 </option>
   
  </select>
  <b>Quantity: </b><input type="text" name="qty" SIZE="4" value=1>
