@@ -17,9 +17,9 @@
  <b>Products Available:</b> 
  <select name=computer>
   <option> Laptop ThinkPad 2022 | Lenovo | 1655 </option>
-  <option> CPU 2021 | Dell | 600.15 </option>
+  <option> CPU 2022 | Dell | 600.15 </option>
   <option> Mouse 2022 | HP | 460.95 </option>
-  <option> Keyboard 2020 | Mac | 700.50 </option>
+  <option> Keyboard 2022 | Mac | 700.50 </option>
   
  </select>
  <b>Quantity: </b><input type="text" name="qty" SIZE="4" value=1>

@@ -6,7 +6,7 @@ package computer;
 
 /**
  *
- * @author nazaraf
+ * @author theja
  */public class Computer {
     private  String name ;
     private String manufacturer;
