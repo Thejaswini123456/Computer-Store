@@ -1,14 +1,13 @@
 <%@page import="project.ConnectionProvider" %>
-<%@page import="project.shoppingUtil" %>
 <%@page import="java.sql.*" %>
 <%
 String email=request.getParameter("email");
 String password=request.getParameter("password");
-shoppingUtil sUtil=new shoppingUtil();
 
 
 
-if(sUtil.getAdminUser().equals(email) && sUtil.getAdminPassword().equals(password))
+
+if(computer.getAdminUser().equals(email) && computer.getAdminPassword().equals(password))
 {
 session.setAttribute("email", email);
 response.sendRedirect("admin/adminHome.jsp");
@@ -36,7 +35,6 @@ try{
 	response.sendRedirect("login.jsp?msg=invalid");
 	}
 
-/*created and designed by AD Singh -- downloaded from http://projects.adsingh.net/*/
 
 }
 %>
