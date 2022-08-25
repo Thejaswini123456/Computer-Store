@@ -29,11 +29,7 @@
 if("invalid".equals(msg)){
 %>
 <h1>Some thing Went Wrong! Try Again !</h1>
-<%/*created and designed by AD Singh -- downloaded from http://projects.adsingh.net/*/} %>
-    <h2>Ecommerce website</h2>
-    <h4><p><a href="http://www.adsingh.net/" style="text-decoration: none;">http://www.adsingh.net/</a></p>
-    <p><a href="http://projects.adsingh.net/" style="text-decoration: none;">http://projects.adsingh.net/</a></p>
-    <p><a href="https://vfxguy.net/" style="text-decoration: none;">https://vfxguy.net/</a></p></h4>
+
     
   </div>
 </div>
